@@ -3,7 +3,6 @@ import API from "../api/api";
 
 function MyAppointments() {
   const [appointments, setAppointments] = useState([]);
-
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
 
@@ -21,7 +20,6 @@ function MyAppointments() {
 
     load();
   }, []);
-
 
   const cancelAppointment = async (id) => {
     try {
@@ -43,51 +41,70 @@ function MyAppointments() {
     }
   };
 
-
   return (
-    <div className="app-main">
-      <h1 className="hero-title">My Appointments</h1>
+    <div className="min-h-screen bg-slate-50 py-10 px-4">
+      <div className="max-w-4xl mx-auto">
 
-      {appointments.length === 0 ? (
-        <p>No appointments found.</p>
-      ) : (
-        appointments.map((appt) => (
-          <div className="table-card" key={appt._id} style={{ marginBottom: 18 }}>
+        {/* Title */}
+        <h1 className="text-3xl font-semibold text-slate-800 mb-6 text-center md:text-left">
+          My Appointments
+        </h1>
 
-            <h2 className="profile-name" style={{ fontSize: 22 }}>
-              Dr. {appt.doctor?.name}
-            </h2>
-
-            <p className="profile-meta">{appt.doctor?.specialization}</p>
-
-            <p className="profile-info">📅 {appt.date}</p>
-            <p className="profile-info">⏰ {appt.time}</p>
-
-            <p className="profile-info">
-              Status:{" "}
-              <span
-                className={
-                  appt.status === "Cancelled"
-                    ? "status-pill status-cancelled"
-                    : "status-pill status-pending"
-                }
-              >
-                {appt.status}
-              </span>
-            </p>
-
-            {appt.status !== "Cancelled" && (
-              <button
-                className="btn-primary"
-                style={{ marginTop: 10 }}
-                onClick={() => cancelAppointment(appt._id)}
-              >
-                Cancel Appointment
-              </button>
-            )}
+        {appointments.length === 0 ? (
+          <div className="text-center text-slate-600 py-10 bg-white shadow rounded-xl">
+            No appointments found.
           </div>
-        ))
-      )}
+        ) : (
+          <div className="space-y-6">
+            {appointments.map((appt) => (
+              <div
+                key={appt._id}
+                className="bg-white p-6 shadow rounded-xl border border-slate-100"
+              >
+                {/* Doctor Info */}
+                <h2 className="text-xl font-semibold text-slate-800">
+                  Dr. {appt.doctor?.name}
+                </h2>
+                <p className="text-slate-500 mb-3">
+                  {appt.doctor?.specialization}
+                </p>
+
+                {/* Appointment Details */}
+                <div className="space-y-1 text-slate-600 text-sm">
+                  <p>📅 {appt.date}</p>
+                  <p>⏰ {appt.time}</p>
+
+                  <p>
+                    Status:{" "}
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-medium 
+                      ${
+                        appt.status === "Cancelled"
+                          ? "bg-red-50 text-red-700"
+                          : appt.status === "Confirmed"
+                          ? "bg-green-50 text-green-700"
+                          : "bg-yellow-50 text-yellow-700"
+                      }`}
+                    >
+                      {appt.status}
+                    </span>
+                  </p>
+                </div>
+
+                {/* Cancel Button */}
+                {appt.status !== "Cancelled" && (
+                  <button
+                    onClick={() => cancelAppointment(appt._id)}
+                    className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition"
+                  >
+                    Cancel Appointment
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

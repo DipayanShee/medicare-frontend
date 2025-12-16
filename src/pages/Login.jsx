@@ -24,7 +24,6 @@ function Login() {
         password,
       });
 
-      // Save token + user info in localStorage
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userName", res.data.user.name);
       localStorage.setItem("userId", res.data.user.id);
@@ -33,54 +32,72 @@ function Login() {
       navigate("/");
     } catch (err) {
       console.error("Login error:", err);
-      alert(
-        err.response?.data?.message || "Login failed. Check your credentials."
-      );
+      alert(err.response?.data?.message || "Login failed. Check your credentials.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="form-card">
-      <h1 className="form-title">Patient Login</h1>
-      <p className="form-subtitle">
-        Login with your registered email and password.
-      </p>
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Email address</label>
-          <input
-            type="email"
-            placeholder="you@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+        {/* Title */}
+        <h1 className="text-2xl font-semibold text-center text-slate-800 mb-2">
+          Patient Login
+        </h1>
+        <p className="text-center text-slate-500 text-sm mb-6">
+          Login with your registered email and password.
+        </p>
 
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="••••••••"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-5">
 
-        <button
-          className="btn-primary"
-          style={{ width: "100%", marginTop: 6 }}
-          disabled={loading}
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
+          {/* Email */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Email address</label>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-2 border rounded-lg bg-slate-50 outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-      <p className="form-footer-text">
-        New user? <Link to="/register">Create an account</Link>
-      </p>
+          {/* Password */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Password</label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-4 py-2 border rounded-lg bg-slate-50 outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-2.5 rounded-lg text-white font-medium transition 
+              ${loading ? "bg-blue-300 cursor-wait" : "bg-blue-600 hover:bg-blue-700"}`}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
+
+        {/* Footer */}
+        <p className="text-center text-slate-600 text-sm mt-4">
+          New user?{" "}
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Create an account
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

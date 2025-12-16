@@ -32,7 +32,7 @@ function Register() {
       console.error("Register error:", err);
       alert(
         err.response?.data?.message ||
-          "Registration failed. Try with a different email."
+        "Registration failed. Try with a different email."
       );
     } finally {
       setLoading(false);
@@ -40,55 +40,79 @@ function Register() {
   };
 
   return (
-    <div className="form-card">
-      <h1 className="form-title">Create Patient Account</h1>
-      <p className="form-subtitle">
-        Register to book doctor appointments and track your visits.
-      </p>
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
+        
+        {/* Title */}
+        <h1 className="text-2xl font-semibold text-center text-slate-800 mb-2">
+          Create Patient Account
+        </h1>
+        <p className="text-center text-slate-500 text-sm mb-6">
+          Register to book doctor appointments and track your visits.
+        </p>
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Full name</label>
-          <input
-            type="text"
-            placeholder="Enter your full name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-5">
 
-        <div className="form-group">
-          <label>Email address</label>
-          <input
-            type="email"
-            placeholder="you@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+          {/* Name */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Full Name</label>
+            <input
+              type="text"
+              placeholder="Enter your full name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="w-full px-4 py-2 border rounded-lg bg-slate-50 outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="Create a password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+          {/* Email */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Email Address</label>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-2 border rounded-lg bg-slate-50 outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-        <button
-          className="btn-primary"
-          style={{ width: "100%", marginTop: 6 }}
-          disabled={loading}
-        >
-          {loading ? "Creating account..." : "Register"}
-        </button>
-      </form>
+          {/* Password */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Password</label>
+            <input
+              type="password"
+              placeholder="Create a password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-4 py-2 border rounded-lg bg-slate-50 outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-      <p className="form-footer-text">
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-2.5 rounded-lg text-white font-medium transition 
+              ${loading ? "bg-blue-300 cursor-wait" : "bg-blue-600 hover:bg-blue-700"}`}
+          >
+            {loading ? "Creating account..." : "Register"}
+          </button>
+        </form>
+
+        {/* Footer */}
+        <p className="text-center text-slate-600 text-sm mt-4">
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-600 hover:underline">
+            Login
+          </Link>
+        </p>
+
+      </div>
     </div>
   );
 }

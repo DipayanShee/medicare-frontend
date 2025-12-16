@@ -7,7 +7,7 @@ import DoctorProfile from "./pages/DoctorProfile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import MyAppointments from "./pages/MyAppointments";
-import "./App.css";
+import "./index.css";
 import DoctorLogin from "./pages/DoctorLogin";
 import DoctorDashboard from "./pages/DoctorDashboard";
 import DoctorRegister from "./pages/DoctorRegister";

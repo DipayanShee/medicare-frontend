@@ -30,111 +30,132 @@ function DoctorRegister() {
   };
 
   return (
-    <div className="form-card">
-      <h1 className="form-title">Doctor Registration</h1>
-      <p className="form-subtitle">Create your doctor account to accept appointments.</p>
-
-      <form onSubmit={handleSubmit}>
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
+      <div className="w-full max-w-xl bg-white shadow-lg rounded-2xl p-8">
         
-        <div className="form-group">
-          <label>Name</label>
-          <input
-            name="name"
-            type="text"
-            required
-            value={form.name}
-            onChange={handleChange}
-          />
-        </div>
+        <h1 className="text-2xl font-semibold text-slate-800 text-center">
+          Doctor Registration
+        </h1>
+        <p className="text-center text-slate-500 text-sm mt-1 mb-6">
+          Create your doctor account to accept appointments.
+        </p>
 
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            name="email"
-            type="email"
-            required
-            value={form.email}
-            onChange={handleChange}
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
 
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            name="password"
-            type="password"
-            required
-            value={form.password}
-            onChange={handleChange}
-          />
-        </div>
+          {/* Name */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Name</label>
+            <input
+              name="name"
+              type="text"
+              required
+              value={form.name}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-slate-50 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Specialization</label>
-          <input
-            name="specialization"
-            type="text"
-            required
-            value={form.specialization}
-            onChange={handleChange}
-          />
-        </div>
+          {/* Email */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Email</label>
+            <input
+              name="email"
+              type="email"
+              required
+              value={form.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-slate-50 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Experience (years)</label>
-          <input
-            name="experience"
-            type="number"
-            required
-            value={form.experience}
-            onChange={handleChange}
-          />
-        </div>
+          {/* Password */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Password</label>
+            <input
+              name="password"
+              type="password"
+              required
+              value={form.password}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-slate-50 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Fees</label>
-          <input
-            name="fees"
-            type="number"
-            required
-            value={form.fees}
-            onChange={handleChange}
-          />
-        </div>
+          {/* Specialization */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Specialization</label>
+            <input
+              name="specialization"
+              type="text"
+              required
+              value={form.specialization}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-slate-50 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Hospital</label>
-          <input
-            name="hospital"
-            type="text"
-            required
-            value={form.hospital}
-            onChange={handleChange}
-          />
-        </div>
+          {/* Experience */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Experience (years)</label>
+            <input
+              name="experience"
+              type="number"
+              required
+              value={form.experience}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-slate-50 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Bio</label>
-          <textarea
-            name="bio"
-            rows="3"
-            required
-            style={{
-              padding: "8px 10px",
-              borderRadius: "8px",
-              border: "1px solid #d1d5db",
-              fontSize: "14px",
-            }}
-            value={form.bio}
-            onChange={handleChange}
-          ></textarea>
-        </div>
+          {/* Fees */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Fees</label>
+            <input
+              name="fees"
+              type="number"
+              required
+              value={form.fees}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-slate-50 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-        <button className="btn-primary" style={{ width: "100%", marginTop: 10 }}>
-          Register
-        </button>
+          {/* Hospital */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Hospital</label>
+            <input
+              name="hospital"
+              type="text"
+              required
+              value={form.hospital}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-slate-50 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
-      </form>
+          {/* Bio */}
+          <div>
+            <label className="block text-sm text-slate-600 mb-1">Bio</label>
+            <textarea
+              name="bio"
+              rows="3"
+              required
+              value={form.bio}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-slate-50 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            ></textarea>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
+          >
+            Register
+          </button>
+
+        </form>
+      </div>
     </div>
   );
 }
